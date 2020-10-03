@@ -1,39 +1,39 @@
 import { PairHourData } from './../types/schema'
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, EthereumEvent } from '@graphprotocol/graph-ts'
-import { Pair, Bundle, Token, BSCswapFactory, BSCswapDayData, PairDayData, TokenDayData } from '../types/schema'
+import { Pair, Bundle, Token, BambooswapFactory, BambooswapDayData, PairDayData, TokenDayData } from '../types/schema'
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from './helpers'
 
 // max number of entities to store
 const maxTokenDayDatas = 10
 const maxPairDayDatas = 10
 
-export function updateBSCswapDayData(event: EthereumEvent): void {
-  let bscswap = BSCswapFactory.load(FACTORY_ADDRESS)
+export function updateBambooswapDayData(event: EthereumEvent): void {
+  let bambooswap = BambooswapFactory.load(FACTORY_ADDRESS)
   let timestamp = event.block.timestamp.toI32()
   let dayID = timestamp / 86400
   let dayStartTimestamp = dayID * 86400
-  let bscswapDayData = BSCswapDayData.load(dayID.toString())
-  if (bscswapDayData == null) {
-    let bscswapDayData = new BSCswapDayData(dayID.toString())
-    bscswapDayData.date = dayStartTimestamp
-    bscswapDayData.dailyVolumeUSD = ZERO_BD
-    bscswapDayData.dailyVolumeBNB = ZERO_BD
-    bscswapDayData.totalVolumeUSD = ZERO_BD
-    bscswapDayData.totalVolumeBNB = ZERO_BD
-    bscswapDayData.dailyVolumeUntracked = ZERO_BD
-    bscswapDayData.totalLiquidityUSD = ZERO_BD
-    bscswapDayData.totalLiquidityBNB = ZERO_BD
-    bscswapDayData.maxStored = maxTokenDayDatas
-    bscswapDayData.mostLiquidTokens = bscswap.mostLiquidTokens
-    bscswapDayData.txCount = ZERO_BI
-    bscswapDayData.save()
+  let bambooswapDayData = BambooswapDayData.load(dayID.toString())
+  if (bambooswapDayData == null) {
+    let bambooswapDayData = new BambooswapDayData(dayID.toString())
+    bambooswapDayData.date = dayStartTimestamp
+    bambooswapDayData.dailyVolumeUSD = ZERO_BD
+    bambooswapDayData.dailyVolumeBNB = ZERO_BD
+    bambooswapDayData.totalVolumeUSD = ZERO_BD
+    bambooswapDayData.totalVolumeBNB = ZERO_BD
+    bambooswapDayData.dailyVolumeUntracked = ZERO_BD
+    bambooswapDayData.totalLiquidityUSD = ZERO_BD
+    bambooswapDayData.totalLiquidityBNB = ZERO_BD
+    bambooswapDayData.maxStored = maxTokenDayDatas
+    bambooswapDayData.mostLiquidTokens = bambooswap.mostLiquidTokens
+    bambooswapDayData.txCount = ZERO_BI
+    bambooswapDayData.save()
   }
-  bscswapDayData = BSCswapDayData.load(dayID.toString())
-  bscswapDayData.totalLiquidityUSD = bscswap.totalLiquidityUSD
-  bscswapDayData.totalLiquidityBNB = bscswap.totalLiquidityBNB
-  bscswapDayData.txCount = bscswap.txCount
-  bscswapDayData.save()
+  bambooswapDayData = BambooswapDayData.load(dayID.toString())
+  bambooswapDayData.totalLiquidityUSD = bambooswap.totalLiquidityUSD
+  bambooswapDayData.totalLiquidityBNB = bambooswap.totalLiquidityBNB
+  bambooswapDayData.txCount = bambooswap.txCount
+  bambooswapDayData.save()
 }
 
 export function updatePairDayData(event: EthereumEvent): void {

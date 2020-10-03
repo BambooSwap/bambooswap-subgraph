@@ -1,4 +1,4 @@
-type BSCswapFactory @entity {
+type BambooswapFactory @entity {
   # factory address
   id: ID!
 
@@ -204,8 +204,8 @@ type Bundle @entity {
   bnbPrice: BigDecimal! # price of BNB usd
 }
 
-# Data accumulated and condensed into day stats for all of BSCswap
-type BSCswapDayData @entity {
+# Data accumulated and condensed into day stats for all of Bambooswap
+type BambooswapDayData @entity {
   id: ID! # timestamp rounded to current day by dividing by 86400
   date: Int!
 
