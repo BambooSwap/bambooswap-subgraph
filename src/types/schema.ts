@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class BSCswapFactory extends Entity {
+export class BambooswapFactory extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class BSCswapFactory extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save BSCswapFactory entity without an ID");
+    assert(id !== null, "Cannot save BambooswapFactory entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save BSCswapFactory entity with non-string ID. " +
+      "Cannot save BambooswapFactory entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("BSCswapFactory", id.toString(), this);
+    store.set("BambooswapFactory", id.toString(), this);
   }
 
-  static load(id: string): BSCswapFactory | null {
-    return store.get("BSCswapFactory", id) as BSCswapFactory | null;
+  static load(id: string): BambooswapFactory | null {
+    return store.get("BambooswapFactory", id) as BambooswapFactory | null;
   }
 
   get id(): string {
@@ -1379,7 +1379,7 @@ export class Bundle extends Entity {
   }
 }
 
-export class BSCswapDayData extends Entity {
+export class BambooswapDayData extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -1387,17 +1387,17 @@ export class BSCswapDayData extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save BSCswapDayData entity without an ID");
+    assert(id !== null, "Cannot save BambooswapDayData entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save BSCswapDayData entity with non-string ID. " +
+      "Cannot save BambooswapDayData entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("BSCswapDayData", id.toString(), this);
+    store.set("BambooswapDayData", id.toString(), this);
   }
 
-  static load(id: string): BSCswapDayData | null {
-    return store.get("BSCswapDayData", id) as BSCswapDayData | null;
+  static load(id: string): BambooswapDayData | null {
+    return store.get("BambooswapDayData", id) as BambooswapDayData | null;
   }
 
   get id(): string {
